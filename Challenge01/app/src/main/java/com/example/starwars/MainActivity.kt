@@ -1,4 +1,4 @@
-package com.example.yourapp
+package com.example.starwars
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -17,12 +17,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.starwars.R
+import com.example.starwars.pages.HomePage
+import com.example.starwars.pages.MoviePage
+import com.example.starwars.pages.PeoplePage
+import com.example.starwars.pages.PlanetPage
+import com.example.starwars.viewmodels.MovieViewModel
+import com.example.starwars.viewmodels.PeopleViewModel
+import com.example.starwars.viewmodels.PlanetViewModel
 import kotlinx.coroutines.launch
 
 private const val START_ROUTE = "home"
@@ -91,7 +99,7 @@ fun MyAppUI() {
                     )
                 }
             },
-            // 👇 FAB shows whenever we're NOT on the start route
+            // FAB shows whenever we're NOT on the start route
             floatingActionButton = {
                 if (currentRoute != START_ROUTE) {
                     FloatingActionButton(
@@ -167,31 +175,31 @@ private fun DrawerItem(text: String, onClick: () -> Unit) {
 fun MyNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = START_ROUTE) {
         composable(START_ROUTE) {
-            // HomePage()
-            Text("Home", modifier = Modifier
-                .fillMaxSize()
-                .wrapContentSize(Alignment.Center))
+            HomePage()
+//            Text("Home", modifier = Modifier
+//                .fillMaxSize()
+//                .wrapContentSize(Alignment.Center))
         }
         composable("movies") {
-            // val vm: MovieViewModel = viewModel()
-            // MoviePage(vm)
-            Text("Movies", modifier = Modifier
-                .fillMaxSize()
-                .wrapContentSize(Alignment.Center))
+             val vm: MovieViewModel = viewModel()
+             MoviePage(vm)
+//            Text("Movies", modifier = Modifier
+//                .fillMaxSize()
+//                .wrapContentSize(Alignment.Center))
         }
         composable("people") {
-            // val vm: PeopleViewModel = viewModel()
-            // PeoplePage(vm)
-            Text("People", modifier = Modifier
-                .fillMaxSize()
-                .wrapContentSize(Alignment.Center))
+             val vm: PeopleViewModel = viewModel()
+             PeoplePage(vm)
+//            Text("People", modifier = Modifier
+//                .fillMaxSize()
+//                .wrapContentSize(Alignment.Center))
         }
         composable("planets") {
-            // val vm: PlanetViewModel = viewModel()
-            // PlanetPage(vm)
-            Text("Planets", modifier = Modifier
-                .fillMaxSize()
-                .wrapContentSize(Alignment.Center))
+             val vm: PlanetViewModel = viewModel()
+             PlanetPage(vm)
+//            Text("Planets", modifier = Modifier
+//                .fillMaxSize()
+//                .wrapContentSize(Alignment.Center))
         }
     }
 }
