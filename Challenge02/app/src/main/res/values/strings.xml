@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Star Wars People</string>
+    <string name="copyright">Copyright © 2024 Web Age Solutions</string>
+    <string name="people">People</string>
+</resources>
